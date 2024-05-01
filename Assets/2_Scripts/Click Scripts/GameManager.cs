@@ -12,17 +12,42 @@ public class GameManager : MonoBehaviour
     private bool isGameClear = false;
     private bool isGameOver = false;
     private int score;
+    public static float bestScore = 0;
     private int nextNoteGroupUnlockCnt;
 
     [SerializeField] private float maxTime = 30;
+    [HideInInspector] public static float myTime;
+    [HideInInspector] public static float minTime;
 
-    public bool IsGameDone {  
+
+    public bool IsGameClear()
+    { return isGameClear; }
+
+    public bool IsGameOver()
+    { return isGameOver; }
+
+
+    public bool IsGameDone 
+    {  
         get
         {
             if (isGameClear || isGameOver)
+            {
+                minTime = PlayerPrefs.GetFloat("minTime", 1000f);
+                if (minTime >= myTime)
+                {
+                    minTime = myTime;
+                    PlayerPrefs.SetFloat("minTime", minTime);
+                }
+
+                SceneManager.LoadScene("END");
                 return true;
-            else
+
+            }
+            else 
                 return false;
+
+
         }
     }
 
@@ -46,6 +71,7 @@ public class GameManager : MonoBehaviour
         while (currentTime < maxTime)
         {
             currentTime += Time.deltaTime;
+            myTime = currentTime;
             UIManager.Instance.OnTimerChange(currentTime, maxTime);
             yield return null;
 
@@ -62,6 +88,8 @@ public class GameManager : MonoBehaviour
     {
         if (isApple)
         {
+
+
             score++;
             nextNoteGroupUnlockCnt++;
             AudioClip audio = arrAudio[1];
@@ -91,9 +119,4 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.OnScoreChange(score, maxScore);
     }
 
-    public void Restart()
-    {
-        Debug.Log("Game Restart!................");
-        SceneManager.LoadScene(0);
-    }
 }
