@@ -7,9 +7,8 @@ public class CurrentScore : MonoBehaviour
 {
     void Start()
     {
-        GameManager.bestScore = GameManager.myTime;
 
-        GetComponent<Text>().text = "Best Score : " + GameManager.bestScore.ToString("F1");
+        GetComponent<Text>().text = "Play Time : " + GameManager.myTime.ToString("F1");
    
     }
 

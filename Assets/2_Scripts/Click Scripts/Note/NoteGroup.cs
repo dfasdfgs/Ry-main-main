@@ -63,13 +63,10 @@ public class NoteGroup : MonoBehaviour
             noteList.RemoveAt(0);
         }
 
-
         for (int i = 0; i < noteList.Count; i++)
             noteList[i].transform.localPosition = Vector3.up * i * noteGap;
 
-
         CreateNote(isApple);
-
 
         anim.Play();
         btnSpriteRender.sprite = SelectBtnSprite;

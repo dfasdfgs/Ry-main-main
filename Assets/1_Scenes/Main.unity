@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 1659752736}
   - component: {fileID: 1659752735}
   m_Layer: 0
-  m_Name: "\uC77C\uB7EC\uC2A4\uD2B8158_0"
+  m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1184,6 +1184,7 @@ MonoBehaviour:
   noteGroupGap: 11.6
   wholeKeyCodeArr: 6100000073000000640000006600000067000000680000006a0000006b0000006c000000
   initNoteGroupNum: 2
+  mouseAnim: {fileID: 1659752735}
 --- !u!4 &1896434871
 Transform:
   m_ObjectHideFlags: 0
@@ -1454,9 +1455,9 @@ MonoBehaviour:
   arrAudio:
   - {fileID: 8300000, guid: e7c6ba26f27c72647b8314d9292fde56, type: 3}
   - {fileID: 8300000, guid: ac9f3db72d8e6ac44b7f19d96c7f0600, type: 3}
-  maxScore: 20
+  maxScore: 3
   noteGroupCreateScore: 10
-  maxTime: 100
+  maxTime: 5
 --- !u!82 &2058777894
 AudioSource:
   m_ObjectHideFlags: 0

@@ -8,10 +8,11 @@ public class NoteManager : MonoBehaviour
     [SerializeField]
     private KeyCode[] wholeKeyCodeArr = new KeyCode[]
     {
-        KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, 
+        KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F,
         KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L
     };
     [SerializeField] private int initNoteGroupNum = 2;
+    [SerializeField] private Animator mouseAnim;
 
     public static NoteManager Instance;
     private List<NoteGroup> noteGroupList = new List<NoteGroup>();
@@ -23,7 +24,7 @@ public class NoteManager : MonoBehaviour
 
     public void Create()
     {
-        for(int i = 0; i < initNoteGroupNum; i++)
+        for (int i = 0; i < initNoteGroupNum; i++)
         {
             CreateNoteGroup(wholeKeyCodeArr[i]);
         }
@@ -59,8 +60,17 @@ public class NoteManager : MonoBehaviour
             if (keyCode == noteGroup.KeyCode)
             {
                 noteGroup.OnInput(isApple);
-                break;
+                //mouseAnim.SetTrigger("dance");
+                mouseAnim.CrossFade("RAT_DFS", 0, 0, 0);
+                Invoke("SetIdleAnim", 1f);
+                //Debug.Log("RAT_DFS call");
+                break;      
             }
         }
+    }
+
+    public void SetIdleAnim()
+    {
+        mouseAnim.CrossFade("RAT_Idel", 0, 0);
     }
 }
